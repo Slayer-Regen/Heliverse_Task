@@ -1,4 +1,4 @@
-
+<!-- 
   <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -21,4 +21,62 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<div class="container">
+    <input type="text" placeholder="Search by name" (input)="searchByName($event)">
+    
+    <div class="filters">
+      <label>Domain:</label>
+      <select (change)="filterByDomain($event)">
+        <option value="">All</option>
+        <option *ngFor="let domain of uniqueDomains" [value]="domain">{{ domain }}</option>
+      </select>
+  
+      <label>Gender:</label>
+      <select (change)="filterByGender($event)">
+        <option value="">All</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Agender">Agender</option>
+      </select>
+  
+      <label>Availability:</label>
+      <select (change)="filterByAvailability($event)">
+        <option value="">All</option>
+        <option value="true">Available</option>
+        <option value="false">Not Available</option>
+      </select>
+    </div>
+  
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-4 mb-4" *ngFor="let card of filteredCards">
+            <div class="card" (click)="addToTeam(card)" [ngClass]="{ 'selected': card.selected }">
+              <img [src]="card.avatar" class="card-img-top" alt="Avatar">
+              <div class="card-body">
+                <h5 class="card-title">{{ card.first_name }} {{ card.last_name }}</h5>
+                <p class="card-text">Email: {{ card.email }}</p>
+                <p class="card-text">Domain: {{ card.domain }}</p>
+                <p class="card-text">Gender: {{ card.gender }}</p>
+                <p class="card-text">Available: {{ card.available ? 'Yes' : 'No' }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-3">
+          <button (click)="moveCards('backward')" [disabled]="startIndex === 0">Backward</button>
+          <button (click)="moveCards('forward')" [disabled]="(startIndex + cardsPerPage) >= filteredCards.length">Forward</button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="team-section" *ngIf="team.length > 0">
+      <h2>Team Details</h2>
+      <div *ngFor="let member of team">
+        <p>{{ member.first_name }} {{ member.last_name }} - {{ member.domain }}</p>
+      </div>
+    </div>
+  </div>
+  
