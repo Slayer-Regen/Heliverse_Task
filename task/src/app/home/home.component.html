@@ -4,7 +4,7 @@
   <h1>Heliverse Internship Task by Kaushal</h1>
 </div>
 
-=
+
 <div class="container">
   <div class="filters row justify-content-center">
     <div class="col-md-3 mb-2">
@@ -36,6 +36,43 @@
     </div>
   </div>
   <div class="row justify-content-center">
+
+   
+    <div class="col-md-8">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h3 class="card-title">Team Members</h3>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let member of selectedTeam">{{ member.first_name }} {{ member.last_name }}</li>
+        </ul>
+        <div class="card-body">
+          <p>Total Team Members: {{ selectedTeam.length }}</p>
+          <div class="text-center">
+            <button class="btn btn-primary" (click)="formTeam()" [disabled]="selectedTeam.length === 0">
+              Form Team
+            </button>
+          </div>
+        </div>
+      </div>
+    
+      <div class="card mt-4">
+        <div class="card-header">
+          <h3 class="card-title">Teams</h3>
+        </div>
+        <div class="card-body">
+          <div *ngFor="let team of teams; let i = index" class="card mb-3">
+            <div class="card-header">
+              <h5 class="card-title">Team {{ i + 1 }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngFor="let member of team">{{ member.first_name }} {{ member.last_name }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <div class="col-md-8">
       <div class="row">
         <div class="col-md-4 mb-4" *ngFor="let card of getCurrentPageCards()">
@@ -45,23 +82,23 @@
               <h5 class="card-title">{{ card.first_name }} {{ card.last_name }}</h5>
               <p class="card-text">Email: {{ card.email }}</p>
               <p class="card-text">Domain: {{ card.domain }}</p>
-              
               <p class="card-text">Available: {{ card.available ? 'Yes' : 'No' }}</p>
+              <button class="btn btn-success" (click)="addToTeam(card)" [disabled]="isMemberAlreadyAdded(card)">
+                Add to Team
+              </button>
             </div>
+            
           </div>
         </div>
       </div>
-      <!-- <div class="text-center mt-3">
-        <button (click)="moveCards('backward')" [disabled]="startIndex === 0">Backward</button>
-        <button (click)="moveCards('forward')" [disabled]="(startIndex + cardsPerPage) >= cardData.length">Forward</button>
-      </div> -->
+      
       <div class="text-center mt-5 ">
         <button class="btn btn-primary mx-2" (click)="moveCards('backward')" [disabled]="startIndex === 0">Backward</button>
         <button class="btn btn-primary mx-2" (click)="moveCards('forward')" [disabled]="(startIndex + cardsPerPage) >= cardData.length">Forward</button>
       </div>
       <br>
       <br>
-      
+
     </div>
   </div>
 </div>

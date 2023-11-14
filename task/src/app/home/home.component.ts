@@ -12,6 +12,9 @@ export class HomeComponent implements OnInit {
   cardsPerPage = 20; 
   filteredCards: any[] = [];
   uniqueDomains: string[] = [];
+  selectedTeam: any[] = [];
+  teams: any[] = [];
+
 
 
   constructor(private dataService: DataService) {}
@@ -85,5 +88,41 @@ export class HomeComponent implements OnInit {
         this.startIndex -= this.cardsPerPage;
       }
     }
+  }
+  createTeam() {
+    const selectedDomain = this.filteredCards.filter((card: any) => card.available && !this.selectedTeam.includes(card));
+    this.selectedTeam = [...this.selectedTeam, ...selectedDomain];
+  }
+
+  showTeamDetails() {
+    console.log('Team Members:', this.selectedTeam);
+  }
+ 
+  addToTeam(card: any) {
+    if (card.available) {
+      if (!this.selectedTeam.includes(card)) {
+        const memberInTeam = this.teams.some(team => team.includes(card));
+        if (!memberInTeam) {
+          this.selectedTeam.push(card);
+        } else {
+          alert(`${card.first_name} ${card.last_name} is already in a team.`);
+        }
+      }
+    } else {
+      alert(`${card.first_name} ${card.last_name} is not available.`);
+    }
+  }
+  
+  
+
+  isMemberAlreadyAdded(card: any): boolean {
+    return this.selectedTeam.includes(card);
+  }
+  formTeam() {
+    this.teams.push(this.selectedTeam);
+
+    this.cardData = this.cardData.filter(card => !this.selectedTeam.includes(card));
+
+    this.selectedTeam = [];
   }
 }
