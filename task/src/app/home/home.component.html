@@ -51,10 +51,17 @@
           </div>
         </div>
       </div>
-      <div class="text-center mt-3">
+      <!-- <div class="text-center mt-3">
         <button (click)="moveCards('backward')" [disabled]="startIndex === 0">Backward</button>
         <button (click)="moveCards('forward')" [disabled]="(startIndex + cardsPerPage) >= cardData.length">Forward</button>
+      </div> -->
+      <div class="text-center mt-5 ">
+        <button class="btn btn-primary mx-2" (click)="moveCards('backward')" [disabled]="startIndex === 0">Backward</button>
+        <button class="btn btn-primary mx-2" (click)="moveCards('forward')" [disabled]="(startIndex + cardsPerPage) >= cardData.length">Forward</button>
       </div>
+      <br>
+      <br>
+      
     </div>
   </div>
 </div>
