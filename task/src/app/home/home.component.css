@@ -1,5 +1,5 @@
   .abc{
-    background-color: rgb(242, 186, 113);
+    background-color: black;
 
   }
   .card-img-top {
@@ -18,7 +18,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     text-align: center;
-    background-color: #cadaeb;
+    background-color: #b3ee83;
   }
   
   .card-title {
@@ -27,7 +27,7 @@
   }
   
   .header {
-    background-color: #97a2e3;
+    background-color: #1b27af;
     padding: 20px;
     text-align: center;
     margin-bottom: 20px;
