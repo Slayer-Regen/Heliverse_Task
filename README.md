@@ -29,9 +29,3 @@ This task demonstrates the functionality of a user interface built with Angular,
 ## Instructions
 Ensure to have Angular CLI installed (`npm install -g @angular/cli`) before running the project.
 
-## Contributors
-👨‍💻 Kaushal - Developer
-
-Feel free to explore and enjoy the task! If you encounter any issues or have suggestions, kindly let us know.
-
-Happy Coding! 🚀✨
